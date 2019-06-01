@@ -3,7 +3,17 @@ function dotfiles_check_status
   set --erase --universal DOTFILES_SHINY
   set --erase --universal DOTFILES_STALE
 
+  set --query --universal DOTFILES_LAST_FETCH; or set DOTFILES_LAST_FETCH 0
+  set --local DOTFILES_FETCH_WINDOW (math "24 * 60 * 60")
+
   cd $XDG_CONFIG_HOME
+
+  # if we know we haven't fetched in the past 24 hours, do so
+  if test (math (date +%s) - $DOTFILES_LAST_FETCH) -gt $DOTFILES_FETCH_WINDOW
+    echo "Checking GitHub for changes to dotfiles..."
+    git fetch > /dev/null
+    set --universal DOTFILES_LAST_FETCH (date +%s)
+  end
 
   # Are there any local changes?
   if test -n (git status --porcelain | tail -n1)
