@@ -1,0 +1,2 @@
+# Don't commit machine-specific Fish configuration
+fish/config.local.fish
