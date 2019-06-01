@@ -25,3 +25,15 @@ cp -f $DOTFILES_ROOT/__support/dotfiles.plist $PATH_TO_LAUNCH_AGENT
 
 launchctl load $PATH_TO_LAUNCH_AGENT
 launchctl start $PATH_TO_LAUNCH_AGENT
+
+# Installing git-hooks
+# ========================
+# These hooks help witih tracking changes to local config and prompting
+# commit / push / pull operations.
+
+for hook_file in (ls $DOTFILES_ROOT/__support/git-hooks)
+  set --local hook (string match -r '[a-z\-]+' $hook_file)
+
+  ln -s -f $DOTFILES_ROOT/__support/git-hooks/$hook_file $DOTFILES_ROOT/.git/hooks/$hook
+  chmod +x $DOTFILES_ROOT/.git/hooks/$hook
+end
