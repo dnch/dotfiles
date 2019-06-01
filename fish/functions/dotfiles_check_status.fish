@@ -6,6 +6,9 @@ function dotfiles_check_status
   set --query --universal DOTFILES_LAST_FETCH; or set DOTFILES_LAST_FETCH 0
   set --local DOTFILES_FETCH_WINDOW (math "24 * 60 * 60")
 
+  # fish doesn't have sub-shells, sadface; remember where we were before
+  set --local PREVIOUS_PWD (pwd)
+
   cd $XDG_CONFIG_HOME
 
   # if we know we haven't fetched in the past 24 hours, do so
@@ -33,5 +36,5 @@ function dotfiles_check_status
   end
 
   # And return back to wherever we were before started checking
-  cd -
+  cd $PREVIOUS_PWD
 end
