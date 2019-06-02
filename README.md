@@ -41,3 +41,13 @@ At the moment, RubyGems doens't support `$XDG_CONFIG_HOME` (and at this stage (l
 Still a TODO at this stage; I am keeping an eye on this with great interest:
 
 - https://github.com/Microsoft/vscode/issues/3884
+
+# TODO
+
+## Fish
+
+- [] re-add fisherman, install fzf again
+
+## Homebrew
+
+- [] track "standard" homebrew dependencies using a brewfile
