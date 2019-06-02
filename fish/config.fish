@@ -4,6 +4,11 @@ source $XDG_CONFIG_HOME/fish/colors.fish
 set -g fish_emoji_width 2
 
 set -x EDITOR "code --wait"
+set -x RBENV_ROOT "$HOME/.rbenv"
+
+command --search rbenv >/dev/null; and status --is-interactive; and source (rbenv init -|psub)
+
+alias bx="bundle exec"
 
 # finally, load any machine-specific configuration
 source $XDG_CONFIG_HOME/fish/config.local.fish

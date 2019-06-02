@@ -21,3 +21,7 @@ Icon           | Status Variable  | Intended Message
 :sparkle:   | DOTFILES_STALE   | New commits on GitHub
 
 It does this through the magic of _Universal Variables._ :sparkles: Seriously, learn [Fish](https://fishshell.com/). It's awesome.
+
+# rbenv
+
+Nothing special here, just a helper that puts the current version in my right prompt.
