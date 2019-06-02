@@ -31,3 +31,7 @@ Nothing special here, just a helper that puts the current version in my right pr
 I've got a few custom helpers / commands that I've added to my workflow—they live in `git/helpers` and are loaded into `$PATH`.
 
 Also, because I have this deployed on both my personal and work machines, i've left out the `[user]` configuraiton in `git/config`, opting instead to have the `GIT_COMMITTER_*`, and `GIT_AUTHOR_*` environment variables in `fish/config.local.fish`.
+
+# RubyGems
+
+At the moment, RubyGems doens't support `$XDG_CONFIG_HOME` (and at this stage (looks very unlikely to do so)[https://github.com/rubygems/rubygems/issues/1599]), so I get aroud it by pointing `$GEMRC` to a file inside my repo.

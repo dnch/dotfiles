@@ -13,6 +13,9 @@ set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
 # vscode is the _best_ code
 set -x EDITOR "code --wait"
 
+# encourage rubygems to play nicely
+set -x GEMRC $XDG_CONFIG_HOME/gem/config.yaml
+
 # loading rbenv
 set -x RBENV_ROOT "$HOME/.rbenv"
 command --search rbenv >/dev/null; and status --is-interactive; and source (rbenv init -|psub)
