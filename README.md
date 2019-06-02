@@ -1,6 +1,6 @@
 # Hey, More Dotfiles!
 
-I may have named this repo incorrectly, as if it works the way I intend it to, the only hidden file needed will be `.config` :tada:
+I may have named this repo incorrectly; If it works the way I intend it to, the only hidden file needed will be `.config` :tada:, rendering the pluralisation of this repo's name incorrect.
 
 ## Getting Started
 
