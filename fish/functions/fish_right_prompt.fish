@@ -1,5 +1,5 @@
 function fish_right_prompt
-  set right_prompt_group_color 777
+  set right_prompt_group_color 554
   set right_prompt_group_start "[ "
   set right_prompt_group_end " ]"
   set right_prompt_group_divider " | "
@@ -17,14 +17,12 @@ function fish_right_prompt
 
     # print all of them (except for the last) with a
     for element in $right_prompt_elements[1..-2]
-      set_color normal
       echo -n $element
       set_color $right_prompt_group_color
       echo -n $right_prompt_group_divider
     end
 
     # print our last element (without the trailing divider)
-    set_color normal
     echo -n $right_prompt_elements[-1]
 
     # and close the group
