@@ -1,6 +1,8 @@
 # make all the things pretty, yo
 source $XDG_CONFIG_HOME/fish/colors.fish
 
+set -g fish_emoji_width 2
+
 set -x EDITOR "code --wait"
 
 # finally, load any machine-specific configuration
