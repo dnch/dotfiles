@@ -35,3 +35,9 @@ Also, because I have this deployed on both my personal and work machines, i've l
 # RubyGems
 
 At the moment, RubyGems doens't support `$XDG_CONFIG_HOME` (and at this stage (looks very unlikely to do so)[https://github.com/rubygems/rubygems/issues/1599]), so I get aroud it by pointing `$GEMRC` to a file inside my repo.
+
+# Visual Studio Code
+
+Still a TODO at this stage; I am keeping an eye on this with great interest:
+
+- https://github.com/Microsoft/vscode/issues/3884
