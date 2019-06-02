@@ -25,3 +25,9 @@ It does this through the magic of _Universal Variables._ :sparkles: Seriously, l
 # rbenv
 
 Nothing special here, just a helper that puts the current version in my right prompt.
+
+# git
+
+I've got a few custom helpers / commands that I've added to my workflow—they live in `git/helpers` and are loaded into `$PATH`.
+
+Also, because I have this deployed on both my personal and work machines, i've left out the `[user]` configuraiton in `git/config`, opting instead to have the `GIT_COMMITTER_*`, and `GIT_AUTHOR_*` environment variables in `fish/config.local.fish`.

@@ -3,6 +3,9 @@ source $XDG_CONFIG_HOME/fish/colors.fish
 
 set -g fish_emoji_width 2
 
+# load git helpers into path
+set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
+
 set -x EDITOR "code --wait"
 set -x RBENV_ROOT "$HOME/.rbenv"
 
