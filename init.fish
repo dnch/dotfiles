@@ -14,17 +14,17 @@ set --local DOTFILES_ROOT (realpath (dirname (status --current-filename)))
 # The backbone of this entire set-up. Handy feature, although  I wish it were
 # as simple as /etc/environment. Sigh.
 
-set --local PATH_TO_LAUNCH_AGENT $HOME/Library/LaunchAgents/io.dnch.dotfiles.plist
+set --local LAUNCH_AGENT_PATH $HOME/Library/LaunchAgents/io.dnch.dotfiles.plist
 
-if test -f $PATH_TO_LAUNCH_AGENT
-  launchctl stop $PATH_TO_LAUNCH_AGENT
-  launchctl unload $PATH_TO_LAUNCH_AGENT
+if test -f $LAUNCH_AGENT_PATH
+  launchctl stop $LAUNCH_AGENT_PATH
+  launchctl unload $LAUNCH_AGENT_PATH
 end
 
-cp -f $DOTFILES_ROOT/__support/dotfiles.plist $PATH_TO_LAUNCH_AGENT
+cp -f $DOTFILES_ROOT/__support/dotfiles.plist $LAUNCH_AGENT_PATH
 
-launchctl load $PATH_TO_LAUNCH_AGENT
-launchctl start $PATH_TO_LAUNCH_AGENT
+launchctl load $LAUNCH_AGENT_PATH
+launchctl start $LAUNCH_AGENT_PATH
 
 # Installing git-hooks
 # ========================
