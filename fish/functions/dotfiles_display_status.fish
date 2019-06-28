@@ -1,9 +1,9 @@
 function dotfiles_display_status
   if set -qu DOTFILES_STALE
-    printf "%s", \U0001F17F # 🅿️
+    echo "[dotfiles] ❇️️  Upstream changes available"
   else if set -qu DOTFILES_DIRTY
-    printf "%s", \U00002623 # ☣️
+    echo "[dotfiles] ☣️  Uncommitted changes in $XDG_CONFIG_HOME"
   else if set -qu DOTFILES_SHINY
-    printf "%s", \U00002747 # ❇️
+    echo "[dotfiles] 🅿️️  Unpushed changes in $XDG_CONFIG_HOME"
   end
 end

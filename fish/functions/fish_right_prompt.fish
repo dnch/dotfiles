@@ -5,8 +5,6 @@ function fish_right_prompt
   set right_prompt_group_divider " | "
 
   # Build up a list of items to show in the right prompt
-  set -a right_prompt_elements (dotfiles_display_status)
-  set -a right_prompt_elements (git_prompt_details)
   set -a right_prompt_elements (current_ruby_version)
 
   # and as long as we have at least one...

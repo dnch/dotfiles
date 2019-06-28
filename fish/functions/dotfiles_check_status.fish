@@ -19,7 +19,7 @@ function dotfiles_check_status
   end
 
   # Are there any local changes?
-  if test ! -z (git status --porcelain | tail -n1)
+  if test ! -z git_dirty_check
     set --universal DOTFILES_DIRTY "1"
   end
 
