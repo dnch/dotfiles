@@ -8,13 +8,14 @@ prompt_order = [
 ]
 
 [git_branch]
-style = "#777773"
+style = ""
+prefix = ""
 
 [git_state]
-style = "#8888884"
+style = ""
 
 [git_status]
-style = "#555551"
+style = ""
 prefix = ""
 suffix = ""
 show_sync_count = true
