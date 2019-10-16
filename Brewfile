@@ -1,0 +1,8 @@
+brew "fish"
+brew "yarn"
+brew "bash"
+brew "fzf"
+brew "git"
+brew "rbenv"
+brew "ruby-build"
+brew "starship"
