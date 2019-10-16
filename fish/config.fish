@@ -1,11 +1,11 @@
+# initialize fisher
+source $XDG_CONFIG_HOME/fish/init_fisher.fish
+
 # make all the things pretty, yo
 source $XDG_CONFIG_HOME/fish/colors.fish
 
 # load aliases
 source $XDG_CONFIG_HOME/fish/aliases.fish
-
-# grrr, argh
-set -g fish_emoji_width 2
 
 # load git helpers into path
 set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
