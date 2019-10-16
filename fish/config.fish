@@ -7,6 +7,9 @@ source $XDG_CONFIG_HOME/fish/colors.fish
 # load aliases
 source $XDG_CONFIG_HOME/fish/aliases.fish
 
+# load and export LSCOLORS
+source $XDG_CONFIG_HOME/fish/lscolors.fish
+
 # load git helpers into path
 set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
 
