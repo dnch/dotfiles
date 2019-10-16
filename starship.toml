@@ -1,0 +1,22 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+prompt_order = [
+  "git_branch",
+  "git_state",
+  "git_status",
+]
+
+[git_branch]
+style = "#777773"
+
+[git_state]
+style = "#8888884"
+
+[git_status]
+style = "#555551"
+prefix = ""
+suffix = ""
+show_sync_count = true
+deleted = "✕"
+
