@@ -1,5 +1,11 @@
-# [ hh:mm:ss ] dan: ~/c/path (status) >
 function fish_prompt
+  set prompt_clock_color 555551
+  set prompt_pwd_color normal
+  set prompt_character_color 999900
+  set prompt_character \U276f
+
   echo
-  echo (set_color 777)"[" (date "+%H:%M:%S") "]"(set_color normal) (whoami)":" (prompt_pwd) "> "
+  colored_span (printf '[ %s ] ' (date "+%H:%M:%S")) $prompt_clock_color
+  colored_span (prompt_pwd) $prompt_pwd_color
+  colored_span (printf ' %s ' $prompt_character) $prompt_character_color
 end
