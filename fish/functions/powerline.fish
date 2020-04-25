@@ -1,119 +1,66 @@
+function __powerline_default_direction --argument-names value
+  switch (string lower "$value")
+    case right; echo "right"
+    case "*"; echo "left"
+  end
+end
+
 function powerline --description "Prints a Powerline-style segmented list"
   set powerline__LEFT_SEGMENT_SEPARATOR     \uE0B0
   set powerline__RIGHT_SEGMENT_SEPARATOR    \uE0B2
   set powerline__LEFT_SUBSEGMENT_SEPARATOR  \uE0B1
   set powerline__RIGHT_SUBSEGMENT_SEPARATOR \uE0B3
-  set powerline__SEGMENT_PADDING "  "
+  set powerline__SEGMENT_TEMPLATE " %s "
 
-  set -l options (fish_opt -s h -l help)
-  set -l options $options (fish_opt -s x -l debug)
+  set powerline_options (fish_opt -s d -l direction --required-val --long-only)
 
-  set options $options (fish_opt --short=t --long=tone --optional --long-only)
-  set options $options (fish_opt --short=f --long=fade --optional --long-only)
-  set options $options (fish_opt --short=d --long=direction --optional --long-only)
+  argparse $powerline_options -- $argv
 
-  argparse $options -- $argv
+  set direction (__powerline_default_direction $_flag_direction)
 
   set segments $argv
 
-  if test (count $segments) -lt 1
-    return 0
+  if test (count $segments) -lt 1; return 1; end
+
+  switch $direction
+    case left; set separator $powerline__LEFT_SEGMENT_SEPARATOR
+    case right; set separator $powerline__RIGHT_SEGMENT_SEPARATOR
   end
 
-  if test $_flag_help
-    echo "HELP GOES HERE"
-    return 0
-  end
+  for segment in $segments
+    string split0 $segment | read -lz background_color content
 
-  # establish defaults;
-  if test -z $_flag_tone; set _flag_tone 'dark'; end
-  if test -z $_flag_fade; set _flag_fade 'in'; end
-  if test -z $_flag_direction; set _flag_direction 'left'; end
+    # write the separator between the current segment and the previous one;
+    # writing the separator before the content gets around having to look-ahead
+    # in the loop, we can simply save the colour at the end, effectively looking
+    # behind to manage the overlap
+    if test -n "$previous_segment_color" -o $direction = right
+      switch $direction
+        case left
+          set separator_color $previous_segment_color
+          set overlap_color $background_color
 
-  switch $_flag_tone
-    # dark greys
-    case dark
-      set bg_color_sequence 444440 555551 666662 777773 888884
-      set fg_color_sequence 999995 AAAAA6 BBBBB7 CCCCC8 DDDDD9
+        case right
+          set separator_color $background_color
+          set overlap_color $previous_segment_color
 
-    # light greys
-    case light
-      set bg_color_sequence 999995 AAAAA6 BBBBB7 CCCCC8 DDDDD9
-      set fg_color_sequence 444440 555551 666662 777773 777773
-
-    case pride
-      set bg_color_sequence FF2600 FF9300 FFFB00 4F8F00 0096FF
-      set fg_color_sequence fff fff fff fff fff
-
-  end
-
-  set bg_color_sequence $bg_color_sequence[1..(count $segments)]
-  set fg_color_sequence $fg_color_sequence[1..(count $segments)]
-
-  if test $_flag_fade != "in"
-    set bg_color_sequence $bg_color_sequence[-1..1]
-    set fg_color_sequence $fg_color_sequence[-1..1]
-  end
-
-  switch $_flag_direction
-    case left
-      set sequence (seq (count $segments))
-      set separator $powerline__LEFT_SEGMENT_SEPARATOR
-      set alpha_terminator ''
-      set omega_terminator $powerline__LEFT_SEGMENT_SEPARATOR
-
-    case right
-      set sequence (seq (count $segments) 1)
-      set separator $powerline__RIGHT_SEGMENT_SEPARATOR
-      set alpha_terminator $powerline__RIGHT_SEGMENT_SEPARATOR
-      set omega_terminator ''
-  end
-
-  set alpha $sequence[1]
-  set omega $sequence[-1]
-
-  if test $_flag_debug
-    echo $options
-    echo $segments
-    echo $_flag_direction
-    echo $_flag_tone
-    echo $_flag_fade
-    echo $sequence
-    echo $bg_color_sequence
-    echo $fg_color_sequence
-
-    echo $alpha
-    echo $omega
-  end
-
-
-
-  set_color --background normal $bg_color_sequence[$alpha]
-  printf '%s' $alpha_terminator
-
-  for i in $sequence
-    set_color --background $bg_color_sequence[$i] $fg_color_sequence[$i]
-    printf '%s%s%s' $powerline__SEGMENT_PADDING $segments[$i] $powerline__SEGMENT_PADDING
-
-    if test $i -ne $sequence[-1]
-      switch $_flag_direction
-        case left;
-          set separator_bg $bg_color_sequence[(math $i + 1)]
-          set separator_fg $bg_color_sequence[$i]
-
-        case right;
-          set separator_bg $bg_color_sequence[$i]
-          set separator_fg $bg_color_sequence[(math $i - 1)]
+          if test -z $overlap_color; set overlap_color normal; end
       end
 
-      set_color --background $separator_bg $separator_fg
+      set_color --background $overlap_color $separator_color
       printf '%s' $separator
     end
+
+    set_color --background $background_color
+    printf $powerline__SEGMENT_TEMPLATE (string trim $content)
+
+    set previous_segment_color $background_color
   end
 
-  set_color --background normal $bg_color_sequence[$omega]
-  printf '%s' $omega_terminator
+  if test $direction = left
+    set_color --background normal $previous_segment_color
+    printf '%s' $separator
+  end
 
   set_color normal
-  printf '\n'
 end
