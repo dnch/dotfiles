@@ -5,5 +5,7 @@ function fish_greeting
 
   dotfiles_display_status
   echo
+  echo
   echo (random choice $ironic_greeting_messages)
+  echo
 end

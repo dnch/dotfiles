@@ -1,11 +1,36 @@
-function fish_prompt
-  set prompt_clock_color 555551
-  set prompt_pwd_color normal
-  set prompt_character_color 999900
-  set prompt_character \U276f
+function __prompt_clock_segment
+  set background_color 333330
+  set content (set_color 999995; date "+%H:%M:%S")
 
-  echo
-  colored_span (printf '[ %s ] ' (date "+%H:%M:%S")) $prompt_clock_color
-  colored_span (prompt_pwd) $prompt_pwd_color
-  colored_span (printf ' %s ' $prompt_character) $prompt_character_color
+  echo (powerline_segment $background_color $content)
+end
+
+function __prompt_path_segment
+  switch $PWD
+    case $HOME
+      set background_color 9c0
+      set foreground_color 000
+
+    case "*.git"
+      set background_color c09
+      set foreground_color fff
+
+    case "*"
+      set background_color c90
+      set foreground_color 000
+  end
+
+  set content (set_color 000; prompt_pwd)
+
+  echo (powerline_segment $background_color $content)
+end
+
+function fish_prompt
+  set prompt_segments (__prompt_clock_segment)
+  set prompt_segments $prompt_segments (__prompt_path_segment)
+
+  powerline $prompt_segments
+
+  set_color normal
+  printf ' '
 end
