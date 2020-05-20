@@ -11,3 +11,5 @@ var
 fish/functions/fisher.fish
 fisher
 
+# Never commit node_modules
+node_modules
