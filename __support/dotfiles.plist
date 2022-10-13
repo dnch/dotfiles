@@ -3,11 +3,9 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>io.dnch.dotfiles</string>
+  <string>xyz.dnch.dotfiles</string>
   <key>ProgramArguments</key>
   <array>
-    <string>sh</string>
-    <string>-c</string>
     <string>launchctl setenv XDG_CONFIG_HOME $HOME/.config</string>
   </array>
   <key>RunAtLoad</key>

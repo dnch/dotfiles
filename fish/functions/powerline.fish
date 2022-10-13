@@ -12,9 +12,7 @@ function powerline --description "Prints a Powerline-style segmented list"
   set powerline__RIGHT_SUBSEGMENT_SEPARATOR \uE0B3
   set powerline__SEGMENT_TEMPLATE " %s "
 
-  set powerline_options (fish_opt -s d -l direction --required-val --long-only)
-
-  argparse $powerline_options -- $argv
+  argparse "d-direction=" -- $argv
 
   set direction (__powerline_default_direction $_flag_direction)
 
