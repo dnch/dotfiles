@@ -1,3 +1,5 @@
+set -x XDG_CONFIG_HOME $HOME/.config
+
 # make all the things pretty, yo
 source $XDG_CONFIG_HOME/fish/colors.fish
 
