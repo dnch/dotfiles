@@ -14,7 +14,7 @@ set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
 set -x EDITOR "code --wait"
 
 # manage language SDK versions with ASDF
-source (brew --prefix asdf)/asdf.fish
+. (brew --prefix asdf)/libexec/asdf.fish
 
 # finally, load any machine-specific configuration
 source $XDG_CONFIG_HOME/fish/config.local.fish
