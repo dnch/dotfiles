@@ -2,6 +2,7 @@
 	editor = code --wait
 [commit]
 	verbose = true
+  template = ~/.config/git/message
 [push]
 	default = current
 [rebase]

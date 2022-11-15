@@ -1,0 +1,73 @@
+# <TYPE>: <SUBJECT> or <TYPE>(SCOPE): <SUBJECT>
+#################################################|#####################|
+
+# (A blank line is needed between the subject line and the body text)
+# [BODY] - optional
+# Longer description; column-wrapped to 72 chars
+#
+# [FOOTER]
+#
+# All commented lines can be left alone; git will remove them
+#
+#################################################|#####################|
+#
+# TYPE: must be one of the following:
+#   feat     - added/new feature
+#   fix      - bug fix
+#   security - security bug fix
+#   refact   - refactoring code
+#   docs     - only documentation changes (including inline comments)
+#   test     - add missing tests/correct existing tests
+#   style    - does not affect the changes in the meaning of the code
+#              (spelling, grammar, whitespace, punctuation, formatting, etc.)
+#   perf     - code changes to improve performance
+#   build    - change that affects the build system, CI configuration,
+#              package manager & external dependencies (eg.: gulp, npm)
+#   chore    - other changes that will not modify source code (inc. tests)
+#              (eg. documentation changes, build process)
+#   release  - release version submission details
+#   revert   - if a revert, use “Revert <hash>” (use short SHA in subject
+#              and “Refs: <full_hash>” in footer); use body for context
+# SCOPE (OPTIONAL): if present is a namespace of sorts for the change
+#   It can be any content that specifies the “location” of change
+#   (eg. UI: menus, sidebars, etc. or logical: cart, user login)
+#
+# SUBJECT: Brief description of the commit
+# A properly formed git commit subject line should always be able to complete
+# the following sentence:
+#      If applied, this commit will <SUBJECT>
+# Conventions:
+#   * Capitalise subject sentence
+#   * Omit trailing period
+#   * Start with verb
+#   * Use imperative mood (eg. “clean the room”, “close the door”, “put out the trash”)
+#
+# BODY: Longer description of commit if helpful/relevant
+#   * Should be column-wrapped to 72 chars
+#   * Imperative mood relaxed for longer description
+#   * Include “what and why” commit is needed
+#      * Why was this change necessary?
+#      * How does it address the problem?
+#   * Are there any side effects from this change?
+#   * Context for why a revert was necessary
+#
+# [FOOTER] - optional; include these if relevant:
+#   * Link to issue tracker ticket for bug fix using GitHub convention
+#     (eg. “Fixes #937”)
+#   * Link to issue tracker for other relevant tickets
+#   * If commit is a revert, include reference to SHA hash of original
+#     (e.g. “Refs: <hash>”)
+#   * Info on any Breaking Changes™
+#
+#################################################|#####################|
+#
+# WHY IS ALL THIS WORTH DOING?
+#   https://www.conventionalcommits.org/
+#   https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+#   https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+#   https://robots.thoughtbot.com/better-commit-messages-with-a-gitmessage-template
+#   http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+#   http://chris.beams.io/posts/git-commit/
+#   https://git-scm.com/book
+#
+# vim: fo=+t:tw=72
