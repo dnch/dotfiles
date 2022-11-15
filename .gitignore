@@ -13,3 +13,14 @@ fisher
 
 # Never commit node_modules
 node_modules
+
+# duh
+tmp
+
+# all the crap we don't want to track
+configstore
+irb
+gh
+iterm2
+yarn
+
