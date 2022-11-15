@@ -1,7 +1,7 @@
-if test "(uname -m)" = "arm64"
-  set HOMEBREW_PREFIX "/opt/homebrew"
+if test (uname -m) = "arm64"
+  set BREW_PREFIX "/opt/homebrew"
 else
-  set HOMEBREW_PREFIX "/usr/local"
+  set BREW_PREFIX "/usr/local"
 end
 
-eval ($HOMEBREW_PREFIX/bin/brew shellenv)
+eval ($BREW_PREFIX/bin/brew shellenv)
