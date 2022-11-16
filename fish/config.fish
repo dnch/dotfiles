@@ -13,6 +13,8 @@ set -x PATH $XDG_CONFIG_HOME/git/helpers $PATH
 # vscode is the _best_ code
 set -x EDITOR "code --wait"
 
+eval (direnv hook fish)
+
 # manage language SDK versions with ASDF
 . (brew --prefix asdf)/libexec/asdf.fish
 
