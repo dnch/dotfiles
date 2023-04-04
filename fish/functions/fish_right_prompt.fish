@@ -25,29 +25,55 @@ function __stash_segment --argument-names git_dir
   end
 end
 
-function __changes_segment
+function __changes_segments
   echo (__git_prompt_change_details) | read dirty invalid staged untracked
 
-  echo (powerline_segment B06698 (color_printf fff "D%i I%i S%i ?%i" $dirty $invalid $staged $untracked))
+  if test $dirty -gt 0
+    echo (powerline_segment B06698 (color_printf fff "D%i" $dirty))
+  end
+
+  if test $staged -gt 0
+    echo (powerline_segment B06698 (color_printf fff "S%i" $staged))
+  end
+
+  if test $invalid -gt 0
+    echo (powerline_segment B06698 (color_printf fff "I%i" $invalid))
+  end
+
+  if test $untracked -gt 0
+    echo (powerline_segment B06698 (color_printf fff "?%i" $untracked))
+  end
 end
 
-function __remote_segment
-  echo (__git_prompt_upstream_details) | read behind ahead
+function __remote_segments
+  echo (__git_prompt_upstream_details) | read upstream
+  echo $upstream | read -l behind ahead
 
-  echo (powerline_segment 025CBB (color_printf fff "%i %i" $behind $ahead))
+  switch "$upstream"
+    case "no-upstream"
+        echo (powerline_segment 025CBB (color_printf fff "no-remote"))
+    case "* *"
+      if test $behind -gt 0
+        echo (powerline_segment 025CBB (color_printf fff "%i" $behind))
+      end
+
+      if test $ahead -gt 0
+        echo (powerline_segment 025CBB (color_printf fff "%i" $ahead))
+      end
+  end
 end
 
 function fish_right_prompt
-  # echo (__git_repo_info; set git_info_exit_status $status) | read git_dir inside_git_dir bare_repo inside_worktree sha
+  echo (__git_repo_info; set git_info_exit_status $status) | read git_dir inside_git_dir bare_repo inside_worktree sha
 
-  # # if fetching git_repo_info failed, we're not in a repo -- bail out.
-  # test $git_info_exit_status -eq 0
-  #   or return
+  # if fetching git_repo_info failed, we're not in a repo -- bail out.
+  test $git_info_exit_status -eq 0
+    or return
 
-  # set prompt_segments
-  # set prompt_segments $prompt_segments (__branch_segment $git_dir $sha)
-  # set prompt_segments $prompt_segments (__changes_segment)
-  # set prompt_segments $prompt_segments (__remote_segment)
+  set prompt_segments
+  set prompt_segments $prompt_segments (__branch_segment $git_dir $sha)
+  set prompt_segments $prompt_segments (__changes_segments)
+  set prompt_segments $prompt_segments (__remote_segments)
 
-  # powerline --direction right $prompt_segments
+  powerline --direction right $prompt_segments
 end

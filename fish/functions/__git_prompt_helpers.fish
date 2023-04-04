@@ -23,7 +23,11 @@ function __git_prompt_upstream_details
   # Find how many commits we are ahead/behind our upstream
   set upstream_status (command git rev-list --count --left-right '@{upstream}'...HEAD 2>/dev/null | string replace \t " ")
 
-  echo $upstream_status
+  if test $status -ne 0
+    echo "no-upstream"
+  else
+    echo $upstream_status
+  end
 end
 
 function __git_prompt_change_details
