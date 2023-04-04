@@ -1094,7 +1094,7 @@
 	<key>SeparateWindowTitlePerTab</key>
 	<true/>
 	<key>ShowBlockBoundaries</key>
-	<true/>
+	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
 	<key>ShowMetalFPSmeter</key>
