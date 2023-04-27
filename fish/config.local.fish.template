@@ -1,0 +1,5 @@
+set -x GIT_AUTHOR_NAME "Dan Cheail"
+set -x GIT_AUTHOR_EMAIL "dan@dnch.xyz"
+
+set -x GIT_COMMITTER_NAME "Dan Cheail"
+set -x GIT_COMMITTER_EMAIL "dan@dnch.xyz"
