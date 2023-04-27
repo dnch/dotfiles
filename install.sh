@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
+UNAME_MACHINE="$(/usr/bin/uname -m)"
 
-defaults write com.googlecode.iterm2 PrefsCustomFolder "/Users/dan/.config/iterm"
+if [[ "${UNAME_MACHINE}" == "arm64" ]]; then
+  HOMEBREW_PREFIX="/opt/homebrew"
+else
+  HOMEBREW_PREFIX="/usr/local"
+fi
+
+eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
+
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
+defaults write com.googlecode.iterm2 PrefsCustomFolder "$PWD/iterm"
 
 cp fish/config.local.fish.template fish/config.local.fish
 
